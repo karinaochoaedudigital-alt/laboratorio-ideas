@@ -3,80 +3,110 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Laboratorio de Ideas | El desafío de los datos perdidos</title>
+<title>El desafío de los datos perdidos · Laboratorio de Ideas</title>
 <style>
-:root{--paper:#f3ead7;--ink:#443d31;--green:#536b57;--mustard:#d8ad50;--line:#d5c6a8;--wrong:#f5dcd2;--right:#dfead9}
-*{box-sizing:border-box} body{margin:0;background:#e8dfce;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
-main{max-width:850px;margin:24px auto;padding:18px}
-.panel{background:var(--paper);border:2px solid var(--line);border-radius:22px;padding:clamp(20px,4vw,38px);box-shadow:0 8px 22px #443d3114}
-.kicker{font-size:.82rem;font-weight:700;letter-spacing:.08em;color:var(--green);text-transform:uppercase}
-h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;margin:.6rem 0 1rem} h2{margin:.5rem 0;font-size:clamp(1.5rem,4vw,2.1rem)}
-.subtitle{font-size:1.15rem;max-width:650px}.rule{background:#e7dcc4;border-radius:14px;padding:14px 16px;margin:18px 0}
-button{font:inherit;font-weight:700;border:0;border-radius:12px;padding:13px 18px;cursor:pointer;background:var(--green);color:white}button:focus-visible,input:focus-visible+label{outline:3px solid var(--mustard);outline-offset:3px}button.secondary{background:#e2d5bb;color:var(--ink)}button:disabled{opacity:.6;cursor:default}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.casehead{display:flex;gap:18px;align-items:center;margin:18px 0}.animal{font-size:3rem;flex-shrink:0;width:82px;height:82px;display:grid;place-items:center;background:#e6dbc2;border-radius:18px}.question{font-size:1.22rem;font-weight:700;margin:18px 0 8px}.choices{display:grid;gap:10px;margin:16px 0}.choice{display:flex;align-items:flex-start;gap:12px;padding:14px;border:2px solid var(--line);border-radius:13px;background:#fffaf0;cursor:pointer}.choice input{width:20px;height:20px;flex-shrink:0;margin-top:3px;accent-color:var(--green)}.choice:has(input:checked){border-color:var(--green);background:#e9eadb}.feedback{padding:16px;border-radius:14px;margin-top:18px}.feedback.good{background:var(--right)}.feedback.retry{background:var(--wrong)}.small{font-size:.92rem;color:#6d604d}.progress{height:8px;background:#ded2bb;border-radius:99px;overflow:hidden;margin:18px 0}.progress span{display:block;height:100%;background:var(--green);width:0;transition:width .2s}.hidden{display:none!important}.endlist{padding-left:22px}.endlist li{margin:8px 0}.footer{font-size:.8rem;text-align:center;color:#6d604d;margin-top:14px}
-@media(max-width:520px){main{padding:10px;margin:8px auto}.casehead{align-items:flex-start}.animal{width:62px;height:62px;font-size:2.3rem}}
+:root{--teal:#286b68;--gold:#e3b34e;--paper:#fffaf0;--ink:#302b25;--line:#d8c8a8}
+*{box-sizing:border-box}body{margin:0;background:#f0e6d2;color:var(--ink);font:18px/1.45 Arial,Helvetica,sans-serif}
+header{background:var(--teal);color:#fff;text-align:center;padding:24px 16px;border-bottom:6px solid var(--gold)}
+header h1{font-size:clamp(1.6rem,4vw,2.5rem);margin:0}header p{margin:6px 0 0}
+main{max-width:950px;margin:22px auto;padding:0 14px 40px}.panel{background:var(--paper);border:2px solid var(--line);border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 4px 0 #dfd1b6}
+h2{color:var(--teal);margin:0 0 14px}.head{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.head img{width:220px;height:165px;max-width:100%;object-fit:cover;border:2px solid var(--line);border-radius:12px;background:#e8e0d0}
+.question{background:#f8edce;border-radius:10px;padding:12px;font-size:1.1rem;font-weight:bold}
+.clues{display:grid;gap:10px;margin:18px 0}.clue{display:flex;align-items:flex-start;gap:12px;background:#fff;border:2px solid #e1d7c5;border-radius:10px;padding:13px;cursor:pointer}.clue input{margin-top:6px;transform:scale(1.25);flex-shrink:0}.clue:has(input:checked){border-color:var(--teal);background:#eaf4ef}
+button{background:var(--teal);color:white;border:0;border-radius:10px;padding:13px 18px;font-weight:bold;font-size:1rem;cursor:pointer;margin:5px 7px 5px 0}button.secondary{background:#6b6255}button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.progress{font-weight:bold;color:#66533b;margin-bottom:12px}.feedback{font-weight:bold;min-height:1.5em;margin:12px 0}.choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}.choice{border:2px solid var(--line);border-radius:12px;padding:10px;background:white}.choice.selected{border:3px solid var(--teal);background:#eaf4ef}.choice img{width:100%;height:115px;object-fit:cover;border-radius:8px;background:#eee}.choice label{display:flex;gap:8px;align-items:center;font-weight:bold;cursor:pointer;margin-top:8px}.final-card{background:white;border:2px solid var(--line);border-radius:14px;padding:16px;margin:16px 0;break-inside:avoid}.final-card img{width:220px;max-width:100%;height:150px;object-fit:cover;border-radius:10px}.final-card li{margin:8px 0}.small{font-size:.9rem;color:#665f55}[hidden]{display:none!important}
+@media print{header,.no-print{display:none!important}body{background:white}main{margin:0;max-width:none}.panel,.final-card{box-shadow:none;border:1px solid #aaa}.final-card{page-break-inside:avoid}}
 </style>
 </head>
 <body>
+<header><h1>🔎 El desafío de los datos perdidos</h1><p>Laboratorio de Ideas · 3.º grado</p></header>
 <main>
-<section id="start" class="panel">
- <div class="kicker">💡 Laboratorio de Ideas · Experiencia 4</div>
- <h1>El desafío de los datos perdidos</h1>
- <p class="subtitle">Hay pistas mezcladas. ¿Podés descubrir cuáles ayudan a resolver cada caso?</p>
- <div class="rule"><strong>🔎 LEÉ · 🧠 PENSÁ · ⭐ ELEGÍ</strong><br>En cada caso hay cinco pistas. Marcá las <strong>tres respuestas correctas</strong> y después comprobá tu elección.</div>
- <button id="begin">Comenzar</button>
+<section class="panel" id="intro">
+<h2>Tu misión</h2>
+<p>En cada expediente hay <strong>5 pistas verdaderas</strong>. Algunas ayudan a responder la pregunta y otras no.</p>
+<p><strong>Leé la pregunta y marcá las 3 pistas relevantes</strong> que ayudan a responderla. Después vas a elegir dos animales para armar tus fichas.</p>
+<button id="start">Comenzar los expedientes</button>
 </section>
-<section id="game" class="panel hidden" aria-live="polite">
- <div class="kicker" id="caseNumber">Expediente 001</div>
- <div class="progress"><span id="progressBar"></span></div>
- <div class="casehead"><div class="animal" id="animalIcon" aria-hidden="true">🐜</div><div><h2 id="animalName">El oso hormiguero</h2><div class="small" id="caseHint">Caso de investigación</div></div></div>
- <div class="question" id="question"></div>
- <p>Leé las pistas y marcá las <strong>3 respuestas correctas</strong>.</p>
- <div class="choices" id="choices"></div>
- <div class="actions"><button id="check">Comprobar respuestas</button><button class="secondary hidden" id="next">Siguiente caso →</button></div>
- <div id="feedback" class="feedback hidden" role="status"></div>
+<section class="panel" id="case" hidden>
+<div class="progress" id="progress"></div><div class="head"><img id="photo" alt=""><div><h2 id="animalTitle"></h2><p class="question" id="question"></p></div></div>
+<h3>Las cinco pistas</h3><div class="clues" id="clues"></div><p class="feedback" id="feedback" aria-live="polite"></p>
+<div class="no-print"><button id="check">Comprobar respuestas</button><button id="next" disabled>Siguiente expediente</button></div>
 </section>
-<section id="finish" class="panel hidden">
- <div class="kicker">💡 Laboratorio de Ideas</div><h1>¡Casos resueltos!</h1>
- <p>Un buen detective no elige cualquier dato: busca información que ayude a responder la pregunta.</p>
- <div class="rule"><strong>Ahora, tu desafío en PowerPoint:</strong>
-  <ol class="endlist"><li>Escribí una pregunta sobre un animal.</li><li>Elegí dos datos que ayuden a responderla.</li><li>Escribí una conclusión con tus propias palabras.</li></ol>
- </div>
- <button id="restart">Volver a jugar</button>
+<section class="panel" id="choose" hidden>
+<h2>Elegí tus dos animales</h2><p>Seleccioná exactamente dos. Después vas a ver sus fichas con solamente las tres pistas relevantes.</p>
+<div class="choices" id="choices"></div><p class="feedback" id="choiceFeedback" aria-live="polite"></p><button id="showCards">Ver mis fichas</button>
 </section>
-<div class="footer">Laboratorio de Ideas · TIC · 3.º grado</div>
+<section class="panel" id="final" hidden>
+<h2>Mis fichas de investigación</h2><p>Usá estas fichas para crear una diapositiva de cada animal en PowerPoint.</p><div id="cards"></div>
+<div class="no-print"><button onclick="window.print()">Imprimir o guardar como PDF</button><button class="secondary" id="change">Elegir otros animales</button></div>
+</section>
 </main>
 <script>
-const cases = [
- {number:'Expediente 001',icon:'🐜',name:'El oso hormiguero',hint:'Alimentación',question:'¿Qué come el oso hormiguero y cómo consigue su alimento?',options:[
-  {text:'Come hormigas y termitas.',correct:true},
-  {text:'Usa sus garras fuertes para abrir hormigueros y termiteros.',correct:true},
-  {text:'Atrapa insectos con su lengua larga y pegajosa.',correct:true},
-  {text:'Se alimenta principalmente de hojas y pasto.',correct:false},
-  {text:'Caza peces en los ríos.',correct:false}],explanation:'El oso hormiguero come hormigas y termitas. Abre sus nidos con sus garras y usa su lengua larga y pegajosa para capturarlas.'},
- {number:'Expediente 002',icon:'🦦',name:'La suricata',hint:'Protección',question:'¿Cómo se protege la suricata de los peligros?',options:[
-  {text:'Vive en grupo y se ayuda con otras suricatas.',correct:true},
-  {text:'Algunas suricatas vigilan mientras otras buscan alimento.',correct:true},
-  {text:'Da señales de alarma cuando detecta un peligro.',correct:true},
-  {text:'Se protege escondiéndose dentro de un caparazón.',correct:false},
-  {text:'Lanza tinta para confundir a sus enemigos.',correct:false}],explanation:'Las suricatas viven en grupos. Algunas vigilan y pueden dar señales de alarma para advertir a las demás. También se refugian en madrigueras.'},
- {number:'Expediente 003',icon:'🦫',name:'El castor',hint:'Construcciones',question:'¿Qué construye el castor para modificar el lugar donde vive?',options:[
-  {text:'Construye diques con ramas y barro.',correct:true},
-  {text:'Los diques frenan el agua y pueden formar estanques.',correct:true},
-  {text:'Construye refugios con ramas cerca del agua.',correct:true},
-  {text:'Teje nidos colgantes en las ramas más altas.',correct:false},
-  {text:'Excava túneles profundos en la arena del desierto.',correct:false}],explanation:'El castor construye diques con ramas y barro. Estos frenan el agua y pueden formar estanques. También construye refugios cerca del agua.'}
+"use strict";
+const expedientes = [
+ {animal:"El oso hormiguero",image:"https://www.worldatlas.com/r/w1200-q80/upload/b9/67/a7/shutterstock-81890218.jpg",question:"¿Qué come el oso hormiguero y cómo consigue su alimento?",clues:[
+  {t:"Se alimenta de hormigas y termitas.",ok:true},
+  {t:"Usa sus garras fuertes para abrir hormigueros y termiteros.",ok:true},
+  {t:"Tiene una lengua larga y pegajosa para atrapar insectos.",ok:true},
+  {t:"Tiene una cola larga y cubierta de pelos.",ok:false},
+  {t:"Tiene un hocico largo y estrecho.",ok:false}]},
+ {animal:"La suricata",image:"https://cdn.book-family.de/petbook/data/uploads/2023/06/gettyimages-541055254.jpg?impolicy=resize&width=992",question:"¿Cómo se protege la suricata de los peligros?",clues:[
+  {t:"Una suricata vigila mientras otras buscan alimento.",ok:true},
+  {t:"Cuando una descubre un peligro, alerta a las demás con sonidos.",ok:true},
+  {t:"Vive en grupos y puede refugiarse en madrigueras.",ok:true},
+  {t:"Tiene manchas oscuras alrededor de los ojos.",ok:false},
+  {t:"Su pelaje es de color marrón claro.",ok:false}]},
+ {animal:"El castor",image:"https://kent.wildwoodtrust.org/media/xc3hifob/conservation21_web.jpg?height=576&quality=80&rmode=crop&rxy=0.6261834266258932%2C0.3536255122913971&width=768",question:"¿Cómo construye sus diques el castor y qué usa para cortar las ramas?",clues:[
+  {t:"Construye diques con ramas, troncos y barro.",ok:true},
+  {t:"Usa ramas y barro para construir refugios cerca del agua.",ok:true},
+  {t:"Corta las ramas con sus fuertes dientes delanteros y las usa para construir.",ok:true},
+  {t:"Tiene una cola ancha y aplanada.",ok:false},
+  {t:"Su pelaje es espeso y ayuda a mantenerlo abrigado.",ok:false}]},
+ {animal:"El búho",image:"https://s3.amazonaws.com/media.wikiaves.com.br/images/0793/3970955g_8e33912cb8c24fd199a538e04441522d.jpg",question:"¿Qué características ayudan al búho a cazar de noche?",clues:[
+  {t:"Sus ojos están adaptados para ver con poca luz.",ok:true},
+  {t:"Su oído le permite detectar sonidos de sus presas.",ok:true},
+  {t:"Sus plumas especiales le permiten volar casi sin hacer ruido.",ok:true},
+  {t:"Tiene plumas que pueden ser marrones, grises o blancas.",ok:false},
+  {t:"Puede girar mucho la cabeza para mirar a su alrededor.",ok:false}]},
+ {animal:"El camaleón",image:"https://sire-media-natgeo.techops.disn.io/generic/photogallery-photo/10/25909.custom.jpg",question:"¿Cómo consigue el camaleón atrapar a sus presas?",clues:[
+  {t:"Atrapa insectos con su lengua larga y pegajosa.",ok:true},
+  {t:"Puede lanzar la lengua rápidamente para alcanzar a sus presas.",ok:true},
+  {t:"Sus ojos le permiten detectar a los insectos que quiere atrapar.",ok:true},
+  {t:"Tiene patas con dedos adaptados para sujetarse a las ramas.",ok:false},
+  {t:"Su piel puede cambiar de color.",ok:false}]}
 ];
-let current=0, locked=false;
-const $=id=>document.getElementById(id);
-function show(id){['start','game','finish'].forEach(s=>$(s).classList.toggle('hidden',s!==id));}
-function renderCase(){locked=false;const c=cases[current];$('caseNumber').textContent=c.number;$('animalIcon').textContent=c.icon;$('animalName').textContent=c.name;$('caseHint').textContent=c.hint;$('question').textContent=c.question;$('progressBar').style.width=((current+1)/cases.length*100)+'%';$('choices').innerHTML='';$('feedback').className='feedback hidden';$('feedback').textContent='';$('check').disabled=false;$('check').classList.remove('hidden');$('next').classList.add('hidden');
- c.options.forEach((o,i)=>{const lab=document.createElement('label');lab.className='choice';const input=document.createElement('input');input.type='checkbox';input.name='answer';input.value=i;const text=document.createElement('span');text.textContent=o.text;lab.append(input,text);$('choices').append(lab);});}
-$('begin').addEventListener('click',()=>{current=0;show('game');renderCase()});
-$('check').addEventListener('click',()=>{if(locked)return;const c=cases[current];const selected=[...document.querySelectorAll('input[name="answer"]:checked')].map(x=>Number(x.value));if(!selected.length){$('feedback').className='feedback retry';$('feedback').textContent='Primero, marcá las pistas que te parecen correctas.';return;}
- const exact=selected.length===3&&selected.every(i=>c.options[i].correct)&&c.options.every((o,i)=>!o.correct||selected.includes(i));$('feedback').className='feedback '+(exact?'good':'retry');if(exact){locked=true;document.querySelectorAll('input[name="answer"]').forEach(x=>x.disabled=true);$('check').disabled=true;$('feedback').textContent='¡Caso resuelto! '+c.explanation;$('next').classList.remove('hidden');$('next').textContent=current===cases.length-1?'Ver el desafío final':'Siguiente caso →';}else{$('feedback').textContent='Todavía no. Revisá la pregunta y probá otra vez. '+c.explanation+' Marcá o desmarcá las pistas y volvé a comprobar.';}});
-$('next').addEventListener('click',()=>{if(current<cases.length-1){current++;renderCase()}else{show('finish')}});
-$('restart').addEventListener('click',()=>{current=0;show('game');renderCase()});
+let indice=0, ordenVisible=[];
+const el=id=>document.getElementById(id);
+function mezclar(lista){const a=lista.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function mostrarExpediente(){
+ const e=expedientes[indice];ordenVisible=mezclar(e.clues);
+ el("progress").textContent=`Expediente ${indice+1} de ${expedientes.length}`;
+ el("animalTitle").textContent=`Expediente 00${indice+1} — ${e.animal}`;
+ el("question").textContent=e.question;el("photo").src=e.image;el("photo").alt="Fotografía de "+e.animal;
+ el("clues").replaceChildren();
+ ordenVisible.forEach((p,i)=>{const label=document.createElement("label");label.className="clue";const input=document.createElement("input");input.type="checkbox";input.name="pista";input.value=i;const span=document.createElement("span");span.textContent=p.t;label.append(input,span);el("clues").append(label);});
+ el("feedback").textContent="";el("check").disabled=false;el("next").disabled=true;el("next").textContent=indice===4?"Elegir mis animales":"Siguiente expediente";
+}
+el("start").addEventListener("click",()=>{el("intro").hidden=true;el("case").hidden=false;mostrarExpediente();});
+el("check").addEventListener("click",()=>{
+ const sel=[...document.querySelectorAll('input[name="pista"]:checked')].map(n=>Number(n.value));
+ if(sel.length!==3){el("feedback").textContent="Marcá exactamente 3 pistas y volvé a comprobar.";return;}
+ if(sel.every(i=>ordenVisible[i].ok)){el("feedback").textContent="¡Correcto! Elegiste las 3 pistas relevantes.";el("check").disabled=true;el("next").disabled=false;}
+ else{el("feedback").textContent="Todavía no. Volvé a leer la pregunta y revisá las pistas."; }
+});
+el("next").addEventListener("click",()=>{if(indice<4){indice++;mostrarExpediente();}else{el("case").hidden=true;el("choose").hidden=false;crearEleccion();}});
+function crearEleccion(){
+ el("choices").replaceChildren();
+ expedientes.forEach((e,i)=>{const box=document.createElement("div");box.className="choice";const img=document.createElement("img");img.src=e.image;img.alt="Fotografía de "+e.animal;const label=document.createElement("label");const cb=document.createElement("input");cb.type="checkbox";cb.value=i;label.append(cb,document.createTextNode(e.animal));box.append(img,label);cb.addEventListener("change",()=>{const checked=[...el("choices").querySelectorAll("input:checked")];if(checked.length>2){cb.checked=false;}box.classList.toggle("selected",cb.checked);el("choiceFeedback").textContent=`Elegiste ${el("choices").querySelectorAll("input:checked").length} de 2 animales.`;});el("choices").append(box);});
+ el("choiceFeedback").textContent=""; 
+}
+el("showCards").addEventListener("click",()=>{
+ const sel=[...el("choices").querySelectorAll("input:checked")].map(n=>Number(n.value));
+ if(sel.length!==2){el("choiceFeedback").textContent="Elegí exactamente dos animales para continuar.";return;}
+ el("cards").replaceChildren();
+ sel.forEach(i=>{const e=expedientes[i],card=document.createElement("article");card.className="final-card";const h=document.createElement("h3");h.textContent=e.animal;const img=document.createElement("img");img.src=e.image;img.alt="Fotografía de "+e.animal;const q=document.createElement("p");q.className="question";q.textContent=e.question;const sub=document.createElement("h4");sub.textContent="Las 3 pistas relevantes";const ol=document.createElement("ol");e.clues.filter(p=>p.ok).forEach(p=>{const li=document.createElement("li");li.textContent=p.t;ol.append(li);});card.append(h,img,q,sub,ol);el("cards").append(card);});
+ el("choose").hidden=true;el("final").hidden=false;
+});
+el("change").addEventListener("click",()=>{el("final").hidden=true;el("choose").hidden=false;});
 </script>
-</body>
-</html>
+</body></html>
